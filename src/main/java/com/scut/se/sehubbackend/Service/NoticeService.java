@@ -31,6 +31,7 @@ public class NoticeService {
         ArrayList<Map<String, Object>> result=new ArrayList<>();
         for (Notice notice:noticeSortedList){
             Map<String,Object> objectMap=new HashMap<>();
+            objectMap.put("noticeId",notice.getId());
             objectMap.put("noticeType",notice.getType());
             objectMap.put("sponsorName",notice.getSponsor().getUserInformation().getName());
             objectMap.put("sponsorDepart",notice.getSponsor().getUserHistories().first().getDepartment());

@@ -38,6 +38,8 @@ public class HashAuthorityMapper implements AuthorityMapper {
             //部门动态权限
             authorityMapper.put(MUTABLE_PREFIX+ SEPARATOR +department.toString(),new SimpleGrantedAuthority(MUTABLE_PREFIX+ SEPARATOR +department.toString()));
         }
+        authorityMapper.put(MUTABLE_PREFIX+ SEPARATOR +Department.Media+SEPARATOR+DynamicDetail.NewMediaApplication,new SimpleGrantedAuthority(MUTABLE_PREFIX+ SEPARATOR +Department.Media+SEPARATOR+DynamicDetail.NewMediaApplication));
+        authorityMapper.put(MUTABLE_PREFIX+ SEPARATOR +Department.Media+SEPARATOR+DynamicDetail.ReporterApplication,new SimpleGrantedAuthority(MUTABLE_PREFIX+ SEPARATOR +Department.Media+SEPARATOR+DynamicDetail.ReporterApplication));
     }
 
     /**

@@ -1,14 +1,14 @@
 package com.scut.se.sehubbackend.Enumeration;
 
 public enum ApplicationType {
-    Activity("activity"),
-    Etiquette("etiquette"),
-    Presenter("presenter"), // 主持人
-    NewMedia("newmedia"), // 新媒体
-    Reporter("reporter"), // 记者团
-    Publicity("publicity"), // 宣传
-    Material("material"),// 秘书
-    Ticket("ticket"); //讲座票
+    Event("activity"),//活动申请
+    Host("presenter"),//主持人申请
+    Etiquette("etiquette"),//礼仪申请
+    NewMedia("newmedia"),//新媒体申请
+    Reporter("reporter"),//记者团申请
+    Publicity("publicity"),//海报申请
+    Material("material"),//物资申请
+    Ticket("ticket"); //讲座票申请
 
     private String type;
     private ApplicationType(String type){ this.type = type; }

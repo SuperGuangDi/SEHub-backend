@@ -8,5 +8,7 @@ package com.scut.se.sehubbackend.Enumeration;
  * <b>注意，新添加其他动态权限时，除在本枚举下添加外，还应该在{@link com.scut.se.sehubbackend.Security.Authorization.interfaces.AuthorityMapper}中添加具体的权限映射</b>
  */
 public enum DynamicDetail {
-    General
+    General,
+    ReporterApplication,
+    NewMediaApplication
 }

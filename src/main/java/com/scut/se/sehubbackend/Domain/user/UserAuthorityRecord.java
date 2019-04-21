@@ -13,6 +13,9 @@ import java.util.Set;
 
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class UserAuthorityRecord implements Serializable {
 
     private static final Long serialVersionUID=4L;
@@ -43,16 +46,11 @@ public class UserAuthorityRecord implements Serializable {
     Long id;
 
     @ManyToOne(optional = false)
-    @Setter
-    @Getter
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
     UserAuthentication owner;
 
-    @NotNull
-    @Getter
-    @Setter
     @NotNull
     String authority;
 
