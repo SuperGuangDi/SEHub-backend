@@ -1,5 +1,6 @@
 package com.scut.se.sehubbackend.Domain;
 
+import com.scut.se.sehubbackend.Domain.application.ApplicationForm;
 import com.scut.se.sehubbackend.Domain.user.UserAuthentication;
 import com.scut.se.sehubbackend.Enumeration.NoticeType;
 import lombok.AllArgsConstructor;
@@ -36,8 +37,7 @@ public class Notice implements Serializable {
     @NotNull
     UserAuthentication acceptor;
 
-    @NotNull
-    Long principalId;
+    ApplicationForm form;
 
     @NotNull
     Date initiateTime;

@@ -1,8 +1,12 @@
 package com.scut.se.sehubbackend.Domain.application;
 
 import com.scut.se.sehubbackend.Domain.user.UserAuthentication;
+import com.scut.se.sehubbackend.Enumeration.ApplicationType;
 import com.scut.se.sehubbackend.Enumeration.ApprovalStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +15,9 @@ import java.util.Date;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ApplicationInternalInformation implements Serializable {
 
     private static final Long serialVersionUID=3L;
@@ -30,11 +37,11 @@ public class ApplicationInternalInformation implements Serializable {
     Date check;
 
     @NotNull
-    Date lastModified;
+    Date lastModifiedTime;
 
     @NotNull
     @OneToOne
-    UserAuthentication lastToModify;
+    UserAuthentication lastModifier;
 
     @ManyToOne
     @NotNull

@@ -1,11 +1,13 @@
 package com.scut.se.sehubbackend.Domain.application;
 
+import com.scut.se.sehubbackend.Enumeration.ApplicationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +24,9 @@ public class ApplicationJoinInformation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @NotNull
+    ApplicationType type;
 
     String eventName;//活动名称
 

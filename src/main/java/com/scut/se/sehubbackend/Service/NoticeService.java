@@ -35,7 +35,7 @@ public class NoticeService {
             objectMap.put("noticeType",notice.getType());
             objectMap.put("sponsorName",notice.getSponsor().getUserInformation().getName());
             objectMap.put("sponsorDepart",notice.getSponsor().getUserHistories().first().getDepartment());
-            objectMap.put("apyID",notice.getPrincipalId());
+            objectMap.put("apyType",notice.getForm().getJoinInformation().getType());
             objectMap.put("time",notice.getInitiateTime());
             objectMap.put("remarks",notice.getRemarks());
             result.add(objectMap);

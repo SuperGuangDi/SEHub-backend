@@ -1,5 +1,6 @@
 package com.scut.se.sehubbackend.Others;
 
+import com.scut.se.sehubbackend.Enumeration.ApplicationType;
 import lombok.Data;
 
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.List;
 
 @Data
 public class ReqApplicationForm {
-    private String type;
+    private ApplicationType type;
 
     private Date acttime;
     private String actname;
