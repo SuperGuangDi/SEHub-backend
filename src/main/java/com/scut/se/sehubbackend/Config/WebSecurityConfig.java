@@ -19,6 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .authorizeRequests().antMatchers("/api/**").authenticated()
+                .and()
                 .addFilterAt(jwtPreAuthenticatedProcessingFilter, AbstractPreAuthenticatedProcessingFilter.class)
                 .addFilterAt(usernamePasswordAuthenticationProcessingFilter, UsernamePasswordAuthenticationFilter.class)
                 .anonymous().disable()

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
-@RequestMapping("/test")
+@RequestMapping("/api")
 @RestController
 public class TestController {
 
@@ -54,7 +54,7 @@ public class TestController {
     }
 
     @RequestMapping("/addnotice")
-    public void addNotice(){
+    public void addNotice() {
         Optional<UserAuthentication> userAuthenticationOptional=userRepository.findById("201730683314");
         if(userAuthenticationOptional.isPresent()){
             UserAuthentication userAuthentication=userAuthenticationOptional.get();
