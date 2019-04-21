@@ -101,7 +101,7 @@ public class ApyService {
         ArrayList<Notice> notices = new ArrayList<>();
         for(UserAuthentication accptor: getAcceptors(form.getType())){
             Notice notice = Notice.builder()
-                    .type(NoticeType.Application_Submit)
+                    .type(NoticeType.ApplicationSubmit)
                     .sponsor(applicant)
                     .acceptor(accptor)
                     .form(applicationForm)
