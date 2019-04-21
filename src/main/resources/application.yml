@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/SE_backend?serverTimezone=GMT
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+server:
+  port: 8081
+
+jwt:
+  rsaKeySize: 2048
+  expired: 5
+  issuer: SCUT-SE
+request:
+  uri:
+    login: /login
+    application:
+      prefix: /application
+      propaganda: /propaganda
+  header:
+    authority: jwt
+  parameter:
+    username: username
+    password: password
+
+
+---
+spring:
+     profiles: dev
+
+my:
+  name: pentix
+---
+spring:
+     profiles:test
+my:
+  name: kirhhoff
+---
+spring:
+     profiles:release
+my:
+  name: northy
