@@ -7,5 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface ApplicationCommonInfoRepository extends JpaRepository<ApplicationInternalInformation,Long> {
+public interface ApplicationInternalInformationRepository extends JpaRepository<ApplicationInternalInformation,Long> {
 }
