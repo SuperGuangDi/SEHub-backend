@@ -4,6 +4,7 @@ package com.scut.se.sehubbackend.Enumeration;
 public enum SeStatus {
 
     NotLogin(301, "not login"),
+    LoginError(302, "username or password error"),
     Success(0, "operate successfully"),
     InvalidApyType(400, "invalid application type");
 

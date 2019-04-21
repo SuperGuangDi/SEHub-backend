@@ -29,10 +29,10 @@ public class ApyService {
     @Autowired private ApplicationJoinInformationRepository joinInformationRepository;
     @Autowired private ApplicationFormRepository formRepository;
     @Autowired private NoticeRepository noticeRepository;
-    private static Map<ApplicationType, GrantedAuthority> applicationType2GrantedAuthority;
+    private Map<ApplicationType, GrantedAuthority> applicationType2GrantedAuthority;
 
-    // getAcceptors使用的
-    static {
+    @Autowired
+    public ApyService(AuthorityMapper authorityMapper){
         applicationType2GrantedAuthority=new HashMap<>();
         applicationType2GrantedAuthority.put(ApplicationType.Etiquette,authorityMapper.mapDynamic(Department.Relation,null));
         applicationType2GrantedAuthority.put(ApplicationType.Event,authorityMapper.mapDynamic(Department.StandingCommittee,null));
@@ -68,7 +68,7 @@ public class ApyService {
         internalInformationRepository.save(internalInformation);
 
         ApplicationJoinInformation joinInformation;
-        switch (form.getType()){
+        switch (ApplicationType.getEnumByString(form.getType())){
             case Etiquette: {
                 joinInformation = ApplicationJoinInformation.builder()
                         .eventName(form.getActname())
@@ -89,7 +89,7 @@ public class ApyService {
         }
 
         // 保存表单
-        joinInformation.setType(form.getType());
+        joinInformation.setType(ApplicationType.getEnumByString(form.getType()));
         joinInformationRepository.save(joinInformation);
 
         ApplicationForm applicationForm = ApplicationForm.builder()
@@ -99,7 +99,7 @@ public class ApyService {
 
         // 添加notices
         ArrayList<Notice> notices = new ArrayList<>();
-        for(UserAuthentication accptor: getAcceptors(form.getType())){
+        for(UserAuthentication accptor: getAcceptors(ApplicationType.getEnumByString(form.getType()))){
             Notice notice = Notice.builder()
                     .type(NoticeType.ApplicationSubmit)
                     .sponsor(applicant)

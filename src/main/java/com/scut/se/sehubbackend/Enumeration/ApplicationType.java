@@ -8,12 +8,21 @@ public enum ApplicationType {
     Reporter("reporter"),//记者团申请
     Publicity("publicity"),//海报申请
     Material("material"),//物资申请
-    Ticket("ticket"); //讲座票申请
+    Ticket("ticket"), //讲座票申请
+    None("none");
 
     private String type;
     private ApplicationType(String type){ this.type = type; }
 
     public String getType() {
         return this.type;
+    }
+
+    public static ApplicationType getEnumByString(String type){
+        for(ApplicationType applicationType : values()){
+            if (type.equals(applicationType.type))
+                return applicationType;
+        }
+        return None;
     }
 }

@@ -2,6 +2,8 @@ package com.scut.se.sehubbackend.Service;
 
 import com.scut.se.sehubbackend.Domain.user.UserAuthentication;
 import com.scut.se.sehubbackend.Enumeration.AuthorityOperation;
+import com.scut.se.sehubbackend.Enumeration.SeStatus;
+import com.scut.se.sehubbackend.Others.Response;
 import com.scut.se.sehubbackend.Repository.user.UserAuthenticationRepository;
 import com.scut.se.sehubbackend.Security.Authorization.interfaces.AuthorityManager;
 import com.scut.se.sehubbackend.Security.Authorization.interfaces.AuthorizationDecisionManager;
@@ -16,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -42,17 +45,32 @@ public class AuthorizeService {
      * 提供登陆后的凭证
      * @return (jwt,200) - 成功登陆<br/>(null,401) - 登陆失败<br/>(null,500) - 服务器内部错误<br/>
      */
-    public ResponseEntity<String> login() {
-        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        if (authentication==null){
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }else {
-            try {
-                return new ResponseEntity<>(jwtManager.encode((UserAuthentication) authentication.getPrincipal()),HttpStatus.OK);
-            } catch (JoseException e) {
-                e.printStackTrace();
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+//    public ResponseEntity<String> login() {
+//        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication==null){
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }else {
+//            try {
+//                return new ResponseEntity<>(jwtManager.encode((UserAuthentication) authentication.getPrincipal()),HttpStatus.OK);
+//            } catch (JoseException e) {
+//                e.printStackTrace();
+//                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//            }
+//        }
+//    }
+
+    public Response login() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null){
+            return new Response(SeStatus.LoginError);
+        }
+        try{
+            String jwt = jwtManager.encode((UserAuthentication) authentication.getPrincipal());
+            HashMap<String, String> hashMap = new HashMap<>();
+            hashMap.put("jwt", jwt);
+            return new Response(SeStatus.Success, hashMap);
+        }catch (JoseException e){
+            return new Response(SeStatus.LoginError);
         }
     }
 

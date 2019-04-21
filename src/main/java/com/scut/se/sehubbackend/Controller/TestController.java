@@ -7,6 +7,7 @@ import com.scut.se.sehubbackend.Domain.user.UserInformation;
 import com.scut.se.sehubbackend.Enumeration.Department;
 import com.scut.se.sehubbackend.Enumeration.NoticeType;
 import com.scut.se.sehubbackend.Enumeration.Position;
+import com.scut.se.sehubbackend.Others.Response;
 import com.scut.se.sehubbackend.Repository.NoticeRepository;
 import com.scut.se.sehubbackend.Repository.user.UserAuthenticationRepository;
 import com.scut.se.sehubbackend.Repository.user.UserHistoryRepository;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
-@RequestMapping("/api")
+@RequestMapping("/test")
 @RestController
 public class TestController {
 
@@ -45,7 +46,7 @@ public class TestController {
                 .name("ptx")
                 .build();
         UserAuthentication userAuthentication=UserAuthentication.builder()
-                .userInformation(userInformation).userHistory(userHistory).studentNO("201730683314").password("123456")
+                .userInformation(userInformation).userHistory(userHistory).studentNO("201630666387").password("123456")
                 .build();
         userHistory.setUserAuthentication(userAuthentication);
         userInformation.setUserAuthentication(userAuthentication);
@@ -61,7 +62,7 @@ public class TestController {
             Notice notice=Notice.builder()
                     .type(NoticeType.Application)
                     .initiateTime(Date.valueOf(LocalDate.now()))
-                    .principalId(Long.valueOf(1999))
+                    // .principalId(Long.valueOf(1999))
                     .sponsor(userAuthentication)
                     .acceptor(userAuthentication)
                     .remarks("测试用备注")
@@ -76,7 +77,7 @@ public class TestController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(){
+    public Response login(){
         return authorizeService.login();
     }
 }

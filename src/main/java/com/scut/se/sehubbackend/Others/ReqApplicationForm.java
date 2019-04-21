@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class ReqApplicationForm {
-    private ApplicationType type;
+    private String type;
 
     private Date acttime;
     private String actname;
