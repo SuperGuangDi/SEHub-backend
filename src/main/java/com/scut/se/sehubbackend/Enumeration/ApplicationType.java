@@ -9,7 +9,7 @@ public enum ApplicationType {
     Publicity("publicity"),//海报申请
     Material("material"),//物资申请
     Ticket("ticket"), //讲座票申请
-    None("none");
+    NoneType("nonetype"); // 避免空指针异常
 
     private String type;
     private ApplicationType(String type){ this.type = type; }
@@ -23,6 +23,6 @@ public enum ApplicationType {
             if (type.equals(applicationType.type))
                 return applicationType;
         }
-        return None;
+        return NoneType;
     }
 }

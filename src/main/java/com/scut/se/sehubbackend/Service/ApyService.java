@@ -29,6 +29,8 @@ public class ApyService {
     @Autowired private ApplicationJoinInformationRepository joinInformationRepository;
     @Autowired private ApplicationFormRepository formRepository;
     @Autowired private NoticeRepository noticeRepository;
+
+    // getAcceptors使用的
     private Map<ApplicationType, GrantedAuthority> applicationType2GrantedAuthority;
 
     @Autowired

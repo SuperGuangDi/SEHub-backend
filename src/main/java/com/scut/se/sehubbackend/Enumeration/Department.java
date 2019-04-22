@@ -13,6 +13,6 @@ public enum Department {
     Life,//生活部
     Quality,//素拓
     Academic,//学术
-    Organizztion,//组织
+    Organization,//组织
     Relation;//外联部
 }

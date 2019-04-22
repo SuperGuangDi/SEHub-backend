@@ -19,6 +19,8 @@ public class UserHistory implements Serializable,Comparable {
     private static final Long serialVersionUID=5L;
 
     @Id
+    @JsonIgnore
+    @ToString.Exclude
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 

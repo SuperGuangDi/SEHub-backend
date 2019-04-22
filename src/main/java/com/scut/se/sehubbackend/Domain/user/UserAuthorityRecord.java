@@ -42,6 +42,8 @@ public class UserAuthorityRecord implements Serializable {
     }
 
     @Id
+    @JsonIgnore
+    @ToString.Exclude
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 

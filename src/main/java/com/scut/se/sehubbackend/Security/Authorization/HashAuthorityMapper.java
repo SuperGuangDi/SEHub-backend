@@ -9,7 +9,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 一个简单的权限映射策略，用于规范输入字符串<br/>
@@ -78,6 +80,20 @@ public class HashAuthorityMapper implements AuthorityMapper {
         if (department==null)//部门为空时（如常委）直接返回空
             return null;
         return detail==null?map(MUTABLE_PREFIX+ SEPARATOR +department.toString()):map(MUTABLE_PREFIX+ SEPARATOR +department.toString()+ SEPARATOR +detail.toString());
+    }
+
+    @Override
+    public Set<GrantedAuthority> mapAllDynamic(Department department) {
+        Set<GrantedAuthority> grantedAuthoritySet=new HashSet<>();
+        if(department!=null){
+            if(department==Department.Media){
+                grantedAuthoritySet.add(mapDynamic(Department.Media,DynamicDetail.NewMediaApplication));
+                grantedAuthoritySet.add(mapDynamic(Department.Media,DynamicDetail.ReporterApplication));
+            }else
+                grantedAuthoritySet.add(mapDynamic(department,null));
+            return grantedAuthoritySet;
+        }
+        return grantedAuthoritySet;
     }
 
 }

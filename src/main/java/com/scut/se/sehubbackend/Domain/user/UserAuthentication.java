@@ -1,5 +1,6 @@
 package com.scut.se.sehubbackend.Domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.SortComparator;
 import org.springframework.security.core.GrantedAuthority;
@@ -57,34 +58,40 @@ public class UserAuthentication implements Serializable, UserDetails {
     SortedSet<UserHistory> userHistories;
 
     public void setAuthorityRecords(Set<GrantedAuthority> grantedAuthorities){
-        UserAuthorityRecord.toUserAuthorityRecords(this,grantedAuthorities);
+        this.authorityRecords=UserAuthorityRecord.toUserAuthorityRecords(this,grantedAuthorities);
     }
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return UserAuthorityRecord.toGrantedAuthorities(getAuthorityRecords());
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return studentNO;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

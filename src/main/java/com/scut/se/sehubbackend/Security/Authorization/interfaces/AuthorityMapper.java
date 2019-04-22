@@ -6,6 +6,8 @@ import com.scut.se.sehubbackend.Enumeration.Position;
 import com.scut.se.sehubbackend.Security.Authorization.HashAuthorityMapper;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Set;
+
 /**
  * 由字符串构建权限的服务<br/>
  * 应当实现一个由输入字符串返回相应权限的功能<br/>
@@ -39,4 +41,6 @@ public interface AuthorityMapper {
      * @return 构造出的动态权限
      */
     GrantedAuthority mapDynamic(Department department, DynamicDetail detail);
+
+    Set<GrantedAuthority> mapAllDynamic(Department department);
 }
